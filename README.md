@@ -138,6 +138,3 @@ After getting the application stable:
 4. Test thoroughly
 5. Submit a pull request
 
-## License
-
-[Your License Here]
