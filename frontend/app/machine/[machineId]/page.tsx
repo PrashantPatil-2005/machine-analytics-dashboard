@@ -84,7 +84,7 @@ export default async function MachineDetailsPage({ params }: PageProps) {
                 <li>
                   <div className="bearing-info">
                     <span className="bearing-name">
-                      {bearing.name || bearing.bearingLocationType || `Sensor ${bearing._id.slice(-4)}`}
+                      { bearing._id || bearing.bearingLocationType || `Sensor ${bearing._id.slice(-4)}`}
                     </span>
                     <span className="bearing-location">
                       {bearing.location || bearing.bearingLocationType || 'Location Unknown'}

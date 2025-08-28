@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import KpiCard from '../components/KpiCard';
 import StatusPieChart from '../components/StatusPieChart';
+import { color } from 'echarts';
 
 interface Machine {
   _id: string;
@@ -77,9 +78,10 @@ export default function HomePage() {
       </header>
       
       <section className="kpi-grid">
-        <KpiCard title="Total Machines" value={totalMachines} />
-        <KpiCard title="Alert Machines" value={alertMachines} />
-        <KpiCard title="Critical Machines" value={criticalMachines} />
+        <KpiCard title="Total Machines" value={totalMachines}  />
+        <KpiCard title="Normal Machines" value={normalMachines} color='#22c55e' />
+        <KpiCard title="Alert Machines" value={alertMachines} color='#f59e0b'/>
+        <KpiCard title="Critical Machines" value={criticalMachines} color='#ef4444'/>
       </section>
 
       <section className="controls">
@@ -92,9 +94,9 @@ export default function HomePage() {
         />
         <div className="filter-buttons">
           <button onClick={() => setStatusFilter('All')} className={statusFilter === 'All' ? 'active' : ''}>All</button>
-          <button onClick={() => setStatusFilter('Normal')} className={statusFilter === 'Normal' ? 'active' : ''}>Normal</button>
-          <button onClick={() => setStatusFilter('Alert')} className={statusFilter === 'Alert' ? 'active' : ''}>Alert</button>
-          <button onClick={() => setStatusFilter('Critical')} className={statusFilter === 'Critical' ? 'active' : ''}>Critical</button>
+          <button onClick={() => setStatusFilter('Normal')} className={statusFilter === 'Normal' ? 'active' : ''} style={{color:'#22c55e'}}>Normal</button>
+          <button onClick={() => setStatusFilter('Alert')} className={statusFilter === 'Alert' ? 'active' : ''} style={{color:'#f59e0b'}}>Alert</button>
+          <button onClick={() => setStatusFilter('Critical')} className={statusFilter === 'Critical' ? 'active' : ''} style={{color:'#ef4444'}}>Critical</button>
         </div>
       </section>
 
@@ -115,7 +117,7 @@ export default function HomePage() {
             <h2>Machine Status</h2>
             <StatusPieChart data={pieChartData} />
           </div>
-          <div className="list-container">
+          <div className="list-container" style={{ maxHeight: "400px", overflowY: "auto" }}>
             <h2>Machine List</h2>
             {filteredMachines.length > 0 ? (
               <ul>
